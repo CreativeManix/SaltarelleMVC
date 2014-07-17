@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/mscorlib.min.js"></script>
+    <script src="Scripts/SaltarelleMVC.js"></script>
+    <script src="Scripts/SampleScriptLib.js"></script>
+    
+    <script src="Scripts/jquery-2.1.1.min.js"></script>
+    <script src="Scripts/handlebars-v1.3.0.js"></script>
+</head>
+<body>
+    <script id="App.Wait" type="text/x-handlebars-template">
+    <h3>Please wait Loading...</h3>
+    </script>
+    <script id="Orders.Index" type="text/x-handlebars-template">
+        <table border="1">
+            <tr>
+                <td>Customer Id</td>
+                <td>Name</td>
+                <td></td>
+            </tr>
+            {{#each this}}
+            <tr>
+                <td>{{this.Id}}</td>
+                <td>{{this.Name}}</td>
+                <td><input type="button" onclick="MVC.Nav('customers/view&id='+{{this.Id}})" value="View" /></td>
+            </tr>
+            {{/each}}
+        </table>
+    </script>
+    <script id="Orders.View" type="text/x-handlebars-template">
+        <table border="1">
+            <tr>
+                <td>Id</td>
+                <td>{{this.Id}}</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>{{this.Name}}</td>
+            </tr>
+        </table>
+    </script>
+    <div id="ViewHost"></div>
+    <script>
+        SampleScriptLib.BootStrap.Boot();
+        $(window).on('hashchange', function() {
+            MVC.HandleRequest();
+        });
+    </script>
+</body>
+</html>

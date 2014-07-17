@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5B1A0A70-DDBF-492F-8D4C-1526B9DAECE8}</ProjectGuid>
+    <ProjectGuid>{B88A12F3-E6AA-480E-8FBF-8B5CCC3FE525}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SaltarelleMVC</RootNamespace>
-    <AssemblyName>SaltarelleMVC</AssemblyName>
+    <RootNamespace>SampleScriptLib</RootNamespace>
+    <AssemblyName>SampleScriptLib</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NoStdLib>True</NoStdLib>
@@ -31,15 +31,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ActionInfo.cs" />
-    <Compile Include="ActionResult.cs" />
-    <Compile Include="Controller.cs" />
-    <Compile Include="ControllerInfo.cs" />
-    <Compile Include="MVC.cs" />
+    <Compile Include="BootStrap.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewActionResult.cs" />
-    <Compile Include="View.cs" />
-    <Compile Include="ViewHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SaltarelleMVC\SaltarelleMVC.csproj">
+      <Project>{5b1a0a70-ddbf-492f-8d4c-1526b9daece8}</Project>
+      <Name>SaltarelleMVC</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -47,6 +48,9 @@
   <ItemGroup>
     <Reference Include="mscorlib">
       <HintPath>$(SolutionDir)packages\Saltarelle.Runtime.2.5.0\tools\Assemblies\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="Saltarelle.jQuery">
+      <HintPath>..\packages\Saltarelle.jQuery.1.10.1\lib\Saltarelle.jQuery.dll</HintPath>
     </Reference>
     <Reference Include="Saltarelle.Web">
       <HintPath>..\packages\Saltarelle.Web.3.1.0\lib\Saltarelle.Web.dll</HintPath>

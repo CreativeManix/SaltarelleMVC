@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaltarelleMVC", "SaltarelleMVC\SaltarelleMVC.csproj", "{5B1A0A70-DDBF-492F-8D4C-1526B9DAECE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleScriptLib", "SampleScriptLib\SampleScriptLib.csproj", "{B88A12F3-E6AA-480E-8FBF-8B5CCC3FE525}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebApplication", "SampleWebApplication\SampleWebApplication.csproj", "{6962BF73-641C-492F-97D7-B9AD428471E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{5B1A0A70-DDBF-492F-8D4C-1526B9DAECE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B1A0A70-DDBF-492F-8D4C-1526B9DAECE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B1A0A70-DDBF-492F-8D4C-1526B9DAECE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B88A12F3-E6AA-480E-8FBF-8B5CCC3FE525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B88A12F3-E6AA-480E-8FBF-8B5CCC3FE525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B88A12F3-E6AA-480E-8FBF-8B5CCC3FE525}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B88A12F3-E6AA-480E-8FBF-8B5CCC3FE525}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6962BF73-641C-492F-97D7-B9AD428471E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6962BF73-641C-492F-97D7-B9AD428471E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6962BF73-641C-492F-97D7-B9AD428471E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6962BF73-641C-492F-97D7-B9AD428471E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
