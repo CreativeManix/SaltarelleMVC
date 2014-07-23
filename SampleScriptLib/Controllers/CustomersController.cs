@@ -31,5 +31,18 @@ namespace SampleScriptLib.Controllers
             });
             return View("App.Wait");
         }
+
+        public ActionResult New()
+        {
+            Window.Alert("m1");
+            return View("Contacts.New");
+        }
+
+        public ActionResult New(ContactModel model)
+        {
+            Window.Alert("m2");
+            Window.Alert(model.Name);
+            return None();
+        }
     }
 }

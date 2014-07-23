@@ -28,9 +28,10 @@ namespace SampleScriptLib
     {
         public override void Init()
         {
-            RegisterHandleBarsView("App.Wait");
-            RegisterHandleBarsView("Orders.Index");
-            RegisterHandleBarsView("Orders.View");
+            foreach (var e in Document.GetElementsByClassName("View"))
+            {
+                RegisterNamedView(e.Id, CompileView(e.InnerHTML));
+            }
         }
         
         [ScriptAlias("Handlebars.compile")]
@@ -39,10 +40,6 @@ namespace SampleScriptLib
             return null;
         }
 
-        private void RegisterHandleBarsView(string name)
-        {
-            RegisterNamedView(name, CompileView(Document.GetElementById(name).InnerHTML));
-        }
 
         public override void RenderView(ViewActionResult result)
         {

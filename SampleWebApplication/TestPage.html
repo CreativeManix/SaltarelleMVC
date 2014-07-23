@@ -10,10 +10,10 @@
     <script src="Scripts/handlebars-v1.3.0.js"></script>
 </head>
 <body>
-    <script id="App.Wait" type="text/x-handlebars-template">
-    <h3>Please wait Loading...</h3>
+    <script id="App.Wait" class="View" type="text/x-handlebars-template">
+        <h3>Please wait Loading...</h3>
     </script>
-    <script id="Orders.Index" type="text/x-handlebars-template">
+    <script id="Orders.Index" class="View" type="text/x-handlebars-template">
         <table border="1">
             <tr>
                 <td>Customer Id</td>
@@ -29,7 +29,7 @@
             {{/each}}
         </table>
     </script>
-    <script id="Orders.View" type="text/x-handlebars-template">
+    <script class="View" id="Orders.View" type="text/x-handlebars-template">
         <table border="1">
             <tr>
                 <td>Id</td>
@@ -40,6 +40,26 @@
                 <td>{{this.Name}}</td>
             </tr>
         </table>
+    </script>
+    <script id="Contacts.New" class="View" type="text/x-handlebars-template" >
+        <form action="customers/new" method="post">
+            <table border="1">
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" name="Name" /></td>
+                </tr>
+                <tr>
+                    <td>Contact Number</td>
+                    <td><input type="text" name="ContactNumber" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="button" onclick="MVC.SubmitForm($(this).closest('form')[0])" value="Save" />
+                    </td>
+                </tr>
+            </table>
+        </form>
     </script>
     <div id="ViewHost"></div>
     <script>

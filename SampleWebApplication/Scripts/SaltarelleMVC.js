@@ -23,7 +23,9 @@
 					ai.name = item.sname;
 					var s = ss.safeCast(eval(ss.getTypeFullName(type) + '.prototype.' + item.sname + '.toString().match (/function\\s*\\w*\\s*\\((.*?)\\)/)[1].split (/\\s*,\\s*/);'), Array);
 					ss.arrayAddRange(ai.parameterNames, s);
-					ci.actions.add(item.name.toLowerCase(), ai);
+					if (!ci.actions.containsKey(item.name.toLowerCase())) {
+						ci.actions.add(item.name.toLowerCase(), ai);
+					}
 				}
 				$MVC.controllers.add(ss.replaceAllString(ss.getTypeName(type).toLowerCase(), 'controller', ''), ci);
 			}
@@ -48,6 +50,10 @@
 		var ai = ci.actions.get_item(a);
 		var ctrler = ss.createInstance(ci.controllerType);
 		var inputs = [];
+		if (ss.isValue($MVC.$_FormModel)) {
+			ss.add(inputs, $MVC.$_FormModel);
+			$MVC.$_FormModel = null;
+		}
 		for (var $t1 = 0; $t1 < ai.parameterNames.length; $t1++) {
 			var p = ai.parameterNames[$t1];
 			ss.add(inputs, parametrs[p]);
@@ -108,9 +114,26 @@
 		}
 		return values;
 	};
-	$MVC.Nav = function(path) {
-		window.location.href = '#url=' + path;
+	$MVC.nav = function(path) {
+		if (ss.referenceEquals($MVC.lastPath, path)) {
+			$MVC.HandleRequest();
+		}
+		else {
+			window.location.href = '#url=' + path;
+		}
+		$MVC.lastPath = path;
 		//HandleRequest();
+	};
+	$MVC.SubmitForm = function(form) {
+		var data = {};
+		var values = $(form).serializeArray();
+		for (var $t1 = 0; $t1 < values.length; $t1++) {
+			var value = values[$t1];
+			data[value.name] = value.value;
+		}
+		$MVC.$_FormModel = data;
+		$MVC.nav(form.getAttribute('action'));
+		return false;
 	};
 	global.MVC = $MVC;
 	////////////////////////////////////////////////////////////////////////////////
@@ -143,6 +166,13 @@
 	};
 	$SaltarelleMVC_ControllerInfo.__typeName = 'SaltarelleMVC.ControllerInfo';
 	global.SaltarelleMVC.ControllerInfo = $SaltarelleMVC_ControllerInfo;
+	////////////////////////////////////////////////////////////////////////////////
+	// SaltarelleMVC.NoneActionResult
+	var $SaltarelleMVC_NoneActionResult = function() {
+		$SaltarelleMVC_ActionResult.call(this);
+	};
+	$SaltarelleMVC_NoneActionResult.__typeName = 'SaltarelleMVC.NoneActionResult';
+	global.SaltarelleMVC.NoneActionResult = $SaltarelleMVC_NoneActionResult;
 	////////////////////////////////////////////////////////////////////////////////
 	// SaltarelleMVC.View
 	var $SaltarelleMVC_View$1 = function(TModel) {
@@ -194,6 +224,9 @@
 			$t1.model = model;
 			return $t1;
 		},
+		none: function() {
+			return new $SaltarelleMVC_NoneActionResult();
+		},
 		renderView: function(view, model) {
 			var $t1 = new $SaltarelleMVC_ViewActionResult();
 			$t1.viewName = view;
@@ -203,6 +236,7 @@
 		}
 	});
 	ss.initClass($SaltarelleMVC_ControllerInfo, $asm, {});
+	ss.initClass($SaltarelleMVC_NoneActionResult, $asm, {}, $SaltarelleMVC_ActionResult);
 	ss.initClass($SaltarelleMVC_ViewActionResult, $asm, {}, $SaltarelleMVC_ActionResult);
 	ss.initClass($SaltarelleMVC_ViewHandler, $asm, {
 		init: null,
@@ -216,4 +250,6 @@
 	});
 	$MVC.controllers = new (ss.makeGenericType(ss.Dictionary$2, [String, $SaltarelleMVC_ControllerInfo]))();
 	$MVC.defaultViewHandler = null;
+	$MVC.lastPath = '';
+	$MVC.$_FormModel = null;
 })();

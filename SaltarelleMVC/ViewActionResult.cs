@@ -9,4 +9,9 @@ namespace SaltarelleMVC
         public string ViewName;
         
     }
+
+    public class NoneActionResult: ActionResult
+    {
+
+    }
 }

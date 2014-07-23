@@ -34,6 +34,14 @@
 	$SampleScriptLib_Controllers_CustomersController.__typeName = 'SampleScriptLib.Controllers.CustomersController';
 	global.SampleScriptLib.Controllers.CustomersController = $SampleScriptLib_Controllers_CustomersController;
 	////////////////////////////////////////////////////////////////////////////////
+	// SampleScriptLib.Models.ContactModel
+	var $SampleScriptLib_Models_ContactModel = function() {
+		this.Id = 0;
+		this.Name = null;
+	};
+	$SampleScriptLib_Models_ContactModel.__typeName = 'SampleScriptLib.Models.ContactModel';
+	global.SampleScriptLib.Models.ContactModel = $SampleScriptLib_Models_ContactModel;
+	////////////////////////////////////////////////////////////////////////////////
 	// SampleScriptLib.Models.CustomerModel
 	var $SampleScriptLib_Models_CustomerModel = function() {
 		this.id = 0;
@@ -44,12 +52,11 @@
 	ss.initClass($SampleScriptLib_BootStrap, $asm, {});
 	ss.initClass($SampleScriptLib_HandlebarsViewHandler, $asm, {
 		init: function() {
-			this.$registerHandleBarsView('App.Wait');
-			this.$registerHandleBarsView('Orders.Index');
-			this.$registerHandleBarsView('Orders.View');
-		},
-		$registerHandleBarsView: function(name) {
-			this.registerNamedView(name, Handlebars.compile(document.getElementById(name).innerHTML));
+			var $t1 = document.getElementsByClassName('View');
+			for (var $t2 = 0; $t2 < $t1.length; $t2++) {
+				var e = $t1[$t2];
+				this.registerNamedView(e.id, Handlebars.compile(e.innerHTML));
+			}
 		},
 		renderView: function(result) {
 			console.log('Handling View:' + result.viewName);
@@ -72,8 +79,18 @@
 				this.renderView('Orders.View', model);
 			}));
 			return this.view('App.Wait', null);
+		},
+		new$1: function() {
+			window.alert('m1');
+			return this.view('Contacts.New', null);
+		},
+		new$2: function(model) {
+			window.alert('m2');
+			window.alert(model.Name);
+			return this.none();
 		}
 	}, SaltarelleMVC.Controller);
+	ss.initClass($SampleScriptLib_Models_ContactModel, $asm, {});
 	ss.initClass($SampleScriptLib_Models_CustomerModel, $asm, {});
-	ss.setMetadata($SampleScriptLib_Controllers_CustomersController, { members: [{ name: '.ctor', type: 1, params: [] }, { name: 'Index', type: 8, sname: 'index', returnType: SaltarelleMVC.ActionResult, params: [] }, { name: 'View', type: 8, sname: 'view$1', returnType: SaltarelleMVC.ActionResult, params: [ss.Int32] }] });
+	ss.setMetadata($SampleScriptLib_Controllers_CustomersController, { members: [{ name: '.ctor', type: 1, params: [] }, { name: 'Index', type: 8, sname: 'index', returnType: SaltarelleMVC.ActionResult, params: [] }, { name: 'New', type: 8, sname: 'new$1', returnType: SaltarelleMVC.ActionResult, params: [] }, { name: 'New', type: 8, sname: 'new$2', returnType: SaltarelleMVC.ActionResult, params: [$SampleScriptLib_Models_ContactModel] }, { name: 'View', type: 8, sname: 'view$1', returnType: SaltarelleMVC.ActionResult, params: [ss.Int32] }] });
 })();
